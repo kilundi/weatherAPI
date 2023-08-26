@@ -7,3 +7,38 @@
 body {
     min-height: 100vh;
 }
+
+.container-fluid {
+    width: 100%;
+    min-height: 100vh;
+    background: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+}
+
+.searchBtn {
+    background: #28a745;
+    text-align: center;
+    padding: 3px;
+}
+
+.inputContainer {
+    padding: 8px;
+    background: green;
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.innerDiv1, .innerDiv2 {
+    margin-top: 10px;
+    width: 100%;
+    height: 100;
+    background: red;
+}
