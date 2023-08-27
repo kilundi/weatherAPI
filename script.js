@@ -139,6 +139,15 @@ function createCityInputAndDatalist() {
         console.log(data.sys.country);
 
         console.log(data.name);
+        console.log(data.weather);
+        console.log(data.weather[0].main);
+        console.log(`humidity: ${data.main.humidity}`);
+        console.log(`pressure: ${data.main.pressure}`);
+        console.log(`temp: ${data.main.temp}`);
+        console.log(`wind deg: ${data.wind.deg}`);
+        console.log(`wind speed: ${data.wind.speed}`);
+        console.log(`longitude: ${data.coord.lon}`);
+        console.log(`latitude: ${data.coord.lat}`);
 
         /* <<<<<<<<<<<>display city name start>>>>>>>>>>>>>< */
         const cityName1 = document.createElement("div");
