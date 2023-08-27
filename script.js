@@ -134,6 +134,62 @@ function createCityInputAndDatalist() {
         }
         const data = await res.json();
         console.log(data);
+        console.log(data.sys.country);
+
+        console.log(data.name);
+
+        /* <<<<<<<<<<<>display city name start>>>>>>>>>>>>>< */
+        const cityName = document.createElement("div");
+        cityName.setAttribute("class", "cityName");
+        cityName.innerHTML = ` <div id="cityContainer"> <p id="cityLebal">City:</p> <p>${data.name}</p> </div> `;
+        innerDiv1.appendChild(cityName);
+        /* <<<<<<<<<<<>display city name end>>>>>>>>>>>>>< */
+
+        /* <<<<<<<<<>>>>>>>>>>><<<<<<<<<<<<>> */
+        /* <<<<<<<<<>>>>>>>>display country name start>>><<<<<<<<<<<<>> */
+
+        const countryCode = data.sys.country; // Replace with the desired alpha-2 country code
+
+        async function getCountryFullName(code) {
+          try {
+            const response = await fetch(
+              `https://restcountries.com/v2/alpha/${code}`
+            );
+            const data = await response.json();
+
+            if (response.ok) {
+              return data.name;
+            } else {
+              console.log("Country not found.");
+              return null;
+            }
+          } catch (error) {
+            console.error("An error occurred:", error);
+            return null;
+          }
+        }
+
+        async function displayCountryFullName() {
+          const fullName = await getCountryFullName(countryCode);
+          if (fullName) {
+            console.log(
+              `Full name of country with code ${countryCode}: ${fullName}`
+            );
+
+            const country = document.createElement("p");
+            country.setAttribute("class", "country");
+            innerDiv1.appendChild(country);
+            if (country) {
+              country.innerHTML = ` <p id="countryLebal" >Country:</p> <p id = "countryName">${fullName}</p>`;
+            }
+          }
+        }
+
+        // Call the function to display the full country name
+        displayCountryFullName();
+
+        /* <<<<<<<<<>>>>>>>>display country name end>>><<<<<<<<<<<<>> */
+        /* <<<<<<<<<>>>>>>>>>>><<<<<<<<<<<<>> */
       };
       response();
 

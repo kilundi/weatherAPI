@@ -52,3 +52,29 @@ body {
     height: 100;
     background: red;
 }
+
+#countryLebal, #cityLebal {
+    color: green;
+    background: blue;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#countryName {
+    background: gray;
+}
+
+#countryLebal, #countryName {
+    text-align: center;
+}
+
+.cityName {
+    display: flex;
+    flex-direction: column;
+    background: green;
+    align-items: center;
+}
+
+#cityContainer {
+    text-align: center;
+}
