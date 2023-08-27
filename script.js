@@ -78,7 +78,7 @@ function createCityInputAndDatalist() {
 
   const searchBtn = document.createElement("button");
   searchBtn.setAttribute("class", "btn btn-primary searchBtn innerContainer");
-  searchBtn.innerHTML = ` Search <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-sm"></i>`;
+  searchBtn.innerHTML = ` <p>Search</p> <p><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-sm"></i></p> `;
   inputContainer.appendChild(searchBtn);
 
   /* <<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>> */
@@ -97,11 +97,13 @@ function createCityInputAndDatalist() {
       const selectedCity = input.value;
       if (selectedCity.trim() === "") {
         // Handle the case where no value was entered
+
         const emptyError = document.createElement("p");
         emptyError.textContent = "Please enter a city name";
         emptyError.setAttribute("class", "emptyInput");
         emptyInputError.appendChild(emptyError);
         console.log("Please enter a city name.");
+        innerDiv1.innerHTML = "";
         return;
       }
       // clean the containers
@@ -139,10 +141,10 @@ function createCityInputAndDatalist() {
         console.log(data.name);
 
         /* <<<<<<<<<<<>display city name start>>>>>>>>>>>>>< */
-        const cityName = document.createElement("div");
-        cityName.setAttribute("class", "cityName");
-        cityName.innerHTML = ` <div id="cityContainer"> <p id="cityLebal">City:</p> <p>${data.name}</p> </div> `;
-        innerDiv1.appendChild(cityName);
+        const cityName1 = document.createElement("div");
+        cityName1.setAttribute("class", "cityName1");
+        cityName1.innerHTML = ` <div id="cityContainer"> <p id="cityLebal">City:</p> <p>${data.name}</p> </div> `;
+        innerDiv1.appendChild(cityName1);
         /* <<<<<<<<<<<>display city name end>>>>>>>>>>>>>< */
 
         /* <<<<<<<<<>>>>>>>>>>><<<<<<<<<<<<>> */
