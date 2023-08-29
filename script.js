@@ -98,154 +98,160 @@ function createCityInputAndDatalist() {
       const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
 
       const response = async () => {
-        const res = await fetch(apiurl);
+        try {
+          const res = await fetch(apiurl);
 
-        if (res.status === 404) {
-          innerDiv1.innerHTML = "";
-          innerDiv2.innerHTML = "";
-          innerDiv1.removeAttribute("class");
-          innerDiv2.removeAttribute("class");
-          const errorElement = document.createElement("p");
-          errorElement.setAttribute("class", "error-message");
-          errorElement.innerHTML = ` <span id="cityError">"${cityName}"</span>   is not a city. Enter a valid city name.`;
-          emptyInputError.appendChild(errorElement);
-          return;
-        }
-
-        const data = await res.json();
-
-        /* Display Data Start */
-        const element1 = document.createElement("div");
-        element1.setAttribute("class", "element1 innerContainer");
-        element1.innerHTML = `${data.weather[0].main}`;
-        innerDiv2.appendChild(element1);
-
-        const imageIcons = document.createElement("img");
-        imageIcons.setAttribute("class", "imageIcons innerContainer");
-        element1.appendChild(imageIcons);
-
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentMinute = now.getMinutes();
-        const period = currentHour >= 12 ? "PM" : "AM";
-        const formattedHour = currentHour % 12 === 0 ? 12 : currentHour % 12;
-        const formattedMinute =
-          currentMinute < 10 ? "0" + currentMinute : currentMinute;
-        const time = `${formattedHour}:${formattedMinute} ${period}`;
-
-        let timeOfDay;
-
-        if (currentHour >= 6 && currentHour < 18) {
-          timeOfDay = "daytime";
-
-          let id = data.weather[0].id;
-
-          if (id === 800) {
-            imageIcons.src = `images/Weather Icons/clear.svg`;
-          } else if (id >= 801 && id <= 804) {
-            imageIcons.src = `images/Weather Icons/cloud.svg`;
-          } else if (id >= 500 && id <= 531) {
-            imageIcons.src = `images/Weather Icons/rain.svg`;
-          } else if (id >= 300 && id <= 321) {
-            imageIcons.src = `images/Weather Icons/drizzle.png`;
-          } else if (id >= 200 && id <= 232) {
-            imageIcons.src = `images/Weather Icons/storm.svg`;
-          } else if (id >= 600 && id <= 622) {
-            imageIcons.src = `images/Weather Icons/snow.svg`;
-          } else if (id >= 701 && id <= 781) {
-            imageIcons.src = `images/Weather Icons/haze.svg`;
+          if (res.status === 404) {
+            innerDiv1.innerHTML = "";
+            innerDiv2.innerHTML = "";
+            innerDiv1.removeAttribute("class");
+            innerDiv2.removeAttribute("class");
+            const errorElement = document.createElement("p");
+            errorElement.setAttribute("class", "error-message");
+            errorElement.innerHTML = ` <span id="cityError">"${cityName}"</span>   is not a city. Enter a valid city name.`;
+            emptyInputError.appendChild(errorElement);
+            return;
           }
-        } else {
-          timeOfDay = "nighttime";
 
-          let id = data.weather[0].id;
+          const data = await res.json();
 
-          if (id === 800) {
-            imageIcons.src = `https://openweathermap.org/img/wn/01n.png`;
-          } else if (id >= 801 && id <= 804) {
-            imageIcons.src = `https://openweathermap.org/img/wn/02n.png`;
-          } else if (id >= 500 && id <= 531) {
-            imageIcons.src = `https://openweathermap.org/img/wn/010n.png`;
-          } else if (id >= 300 && id <= 321) {
-            imageIcons.src = `https://openweathermap.org/img/wn/09n.png`;
-          } else if (id >= 200 && id <= 232) {
-            imageIcons.src = `https://openweathermap.org/img/wn/11n.png`;
-          } else if (id >= 600 && id <= 622) {
-            imageIcons.src = `https://openweathermap.org/img/wn/13n.png`;
-          } else if (id >= 701 && id <= 781) {
-            imageIcons.src = `https://openweathermap.org/img/wn/50d.png`;
+          /* Display Data Start */
+          const element1 = document.createElement("div");
+          element1.setAttribute("class", "element1 innerContainer");
+          element1.innerHTML = `${data.weather[0].main}`;
+          innerDiv2.appendChild(element1);
+
+          const imageIcons = document.createElement("img");
+          imageIcons.setAttribute("class", "imageIcons innerContainer");
+          element1.appendChild(imageIcons);
+
+          const now = new Date();
+          const currentHour = now.getHours();
+          const currentMinute = now.getMinutes();
+          const period = currentHour >= 12 ? "PM" : "AM";
+          const formattedHour = currentHour % 12 === 0 ? 12 : currentHour % 12;
+          const formattedMinute =
+            currentMinute < 10 ? "0" + currentMinute : currentMinute;
+          const time = `${formattedHour}:${formattedMinute} ${period}`;
+
+          let timeOfDay;
+
+          if (currentHour >= 6 && currentHour < 18) {
+            timeOfDay = "daytime";
+
+            let id = data.weather[0].id;
+
+            if (id === 800) {
+              imageIcons.src = `images/Weather Icons/clear.svg`;
+            } else if (id >= 801 && id <= 804) {
+              imageIcons.src = `images/Weather Icons/cloud.svg`;
+            } else if (id >= 500 && id <= 531) {
+              imageIcons.src = `images/Weather Icons/rain.svg`;
+            } else if (id >= 300 && id <= 321) {
+              imageIcons.src = `images/Weather Icons/drizzle.png`;
+            } else if (id >= 200 && id <= 232) {
+              imageIcons.src = `images/Weather Icons/storm.svg`;
+            } else if (id >= 600 && id <= 622) {
+              imageIcons.src = `images/Weather Icons/snow.svg`;
+            } else if (id >= 701 && id <= 781) {
+              imageIcons.src = `images/Weather Icons/haze.svg`;
+            }
+          } else {
+            timeOfDay = "nighttime";
+
+            let id = data.weather[0].id;
+
+            if (id === 800) {
+              imageIcons.src = `https://openweathermap.org/img/wn/01n.png`;
+            } else if (id >= 801 && id <= 804) {
+              imageIcons.src = `https://openweathermap.org/img/wn/02n.png`;
+            } else if (id >= 500 && id <= 531) {
+              imageIcons.src = `https://openweathermap.org/img/wn/010n.png`;
+            } else if (id >= 300 && id <= 321) {
+              imageIcons.src = `https://openweathermap.org/img/wn/09n.png`;
+            } else if (id >= 200 && id <= 232) {
+              imageIcons.src = `https://openweathermap.org/img/wn/11n.png`;
+            } else if (id >= 600 && id <= 622) {
+              imageIcons.src = `https://openweathermap.org/img/wn/13n.png`;
+            } else if (id >= 701 && id <= 781) {
+              imageIcons.src = `https://openweathermap.org/img/wn/50d.png`;
+            }
           }
-        }
 
-        const collectEl = document.createElement("div");
-        collectEl.setAttribute("class", "collectEl innerContainer");
-        innerDiv2.appendChild(collectEl);
+          const collectEl = document.createElement("div");
+          collectEl.setAttribute("class", "collectEl innerContainer");
+          innerDiv2.appendChild(collectEl);
 
-        const element2 = document.createElement("div");
-        element2.setAttribute("class", "element2 innerContainer");
-        element2.innerHTML = `humidity: ${data.main.humidity}%`;
-        collectEl.appendChild(element2);
+          const element2 = document.createElement("div");
+          element2.setAttribute("class", "element2 innerContainer");
+          element2.innerHTML = `humidity: ${data.main.humidity}%`;
+          collectEl.appendChild(element2);
 
-        const element4 = document.createElement("div");
-        element4.setAttribute("class", "element4 innerContainer");
-        element4.innerHTML = `temp: ${Math.floor(data.main.temp)}°C`;
-        element1.appendChild(element4);
+          const element4 = document.createElement("div");
+          element4.setAttribute("class", "element4 innerContainer");
+          element4.innerHTML = `temp: ${Math.floor(data.main.temp)}°C`;
+          element1.appendChild(element4);
 
-        const element5 = document.createElement("div");
-        element5.setAttribute("class", "element5 innerContainer");
-        element5.innerHTML = `wind deg: ${data.wind.deg}°`;
-        collectEl.appendChild(element5);
+          const element5 = document.createElement("div");
+          element5.setAttribute("class", "element5 innerContainer");
+          element5.innerHTML = `wind deg: ${data.wind.deg}°`;
+          collectEl.appendChild(element5);
 
-        const element6 = document.createElement("div");
-        element6.setAttribute("class", "element6 innerContainer");
-        element6.innerHTML = `wind speed: ${data.wind.speed} km/h.`;
-        element5.appendChild(element6);
+          const element6 = document.createElement("div");
+          element6.setAttribute("class", "element6 innerContainer");
+          element6.innerHTML = `wind speed: ${data.wind.speed} km/h.`;
+          element5.appendChild(element6);
 
-        const element9 = document.createElement("div");
-        element9.setAttribute("class", "element9 innerContainer");
-        element9.innerHTML = `Feels like: ${Math.floor(
-          data.main.feels_like
-        )}°C`;
-        element2.appendChild(element9);
+          const element9 = document.createElement("div");
+          element9.setAttribute("class", "element9 innerContainer");
+          element9.innerHTML = `Feels like: ${Math.floor(
+            data.main.feels_like
+          )}°C`;
+          element2.appendChild(element9);
 
-        const cityName1 = document.createElement("div");
-        cityName1.setAttribute("class", "cityName1");
-        cityName1.innerHTML = ` <div id="cityContainer"> <p id="cityLebal">City:</p> <p>${data.name}</p> </div> `;
-        innerDiv1.appendChild(cityName1);
+          const cityName1 = document.createElement("div");
+          cityName1.setAttribute("class", "cityName1");
+          cityName1.innerHTML = ` <div id="cityContainer"> <p id="cityLebal">City:</p> <p>${data.name}</p> </div> `;
+          innerDiv1.appendChild(cityName1);
 
-        const countryCode = data.sys.country;
+          const countryCode = data.sys.country;
 
-        async function getCountryFullName(code) {
-          try {
-            const response = await fetch(
-              `https://restcountries.com/v2/alpha/${code}`
-            );
-            const data = await response.json();
-            if (response.ok) {
-              return data.name;
-            } else {
+          async function getCountryFullName(code) {
+            try {
+              const response = await fetch(
+                `https://restcountries.com/v2/alpha/${code}`
+              );
+              const data = await response.json();
+              if (response.ok) {
+                return data.name;
+              } else {
+                return null;
+              }
+            } catch (error) {
+              console.error("An error occurred:", error);
               return null;
             }
-          } catch (error) {
-            console.error("An error occurred:", error);
-            return null;
           }
-        }
 
-        async function displayCountryFullName() {
-          const fullName = await getCountryFullName(countryCode);
-          if (fullName) {
-            const country = document.createElement("div");
-            country.setAttribute("class", "country");
-            innerDiv1.appendChild(country);
-            if (country) {
-              country.innerHTML = ` <p id="countryLebal" >Country:</p> <p id = "countryName">${fullName}</p>`;
+          async function displayCountryFullName() {
+            const fullName = await getCountryFullName(countryCode);
+            if (fullName) {
+              const country = document.createElement("div");
+              country.setAttribute("class", "country");
+              innerDiv1.appendChild(country);
+              if (country) {
+                country.innerHTML = ` <p id="countryLebal" >Country:</p> <p id = "countryName">${fullName}</p>`;
+              }
             }
           }
-        }
 
-        displayCountryFullName();
+          displayCountryFullName();
+        } catch (error) {
+          console.log(error.message);
+        }
       };
+
+      /* fun end */
 
       response();
       input.value = "";
