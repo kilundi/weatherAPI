@@ -63,7 +63,7 @@ function createCityInputAndDatalist() {
   wrapperContainer.appendChild(emptyInputError);
 
   const innerDiv2 = document.createElement("div");
-  innerDiv2.setAttribute("class", "innerDiv2 innerContainer");
+  // innerDiv2.setAttribute("class", "innerDiv2 innerContainer");
   wrapperContainer.appendChild(innerDiv2);
 
   /*   const weatherIcon = document.createElement("img");
@@ -94,6 +94,7 @@ function createCityInputAndDatalist() {
     try {
       emptyInputError.innerHTML = "";
       innerDiv1.setAttribute("class", "innerDiv1 innerContainer");
+      innerDiv2.setAttribute("class", "innerDiv2 innerContainer");
 
       const selectedCity = input.value;
       if (selectedCity.trim() === "") {
@@ -105,6 +106,9 @@ function createCityInputAndDatalist() {
         emptyInputError.appendChild(emptyError);
         console.log("Please enter a city name.");
         innerDiv1.innerHTML = "";
+        innerDiv2.innerHTML = "";
+        innerDiv1.removeAttribute("class");
+        innerDiv2.removeAttribute("class");
         return;
       }
       // clean the containers
@@ -128,11 +132,16 @@ function createCityInputAndDatalist() {
         // console.log(res.status);
         if (res.status === 404) {
           console.log("City not found.");
+          innerDiv1.innerHTML = "";
+          innerDiv2.innerHTML = "";
+          innerDiv1.removeAttribute("class");
+          innerDiv2.removeAttribute("class");
 
           const errorElement = document.createElement("p");
           errorElement.setAttribute("class", "error-message");
-          errorElement.textContent = `${cityName} is not a city. Enter a valid city name.`;
+          errorElement.innerHTML = ` <span id="cityError">"${cityName}"</span>   is not a city. Enter a valid city name.`;
           emptyInputError.appendChild(errorElement);
+
           return;
         }
         const data = await res.json();
@@ -155,7 +164,7 @@ function createCityInputAndDatalist() {
         // displaying the data on the screen
         const element1 = document.createElement("div");
         element1.setAttribute("class", "element1 innerContainer");
-        element1.innerHTML = `Weather ${data.weather[0].main}`;
+        element1.innerHTML = `${data.weather[0].main}`;
         innerDiv2.appendChild(element1);
 
         const imageIcons = document.createElement("img");
@@ -163,7 +172,63 @@ function createCityInputAndDatalist() {
         // imageIcons.innerHTML = `images/Weather Icons/clear.svg`;
         element1.appendChild(imageIcons);
 
-        let id = data.weather[0].id;
+        /* <<<<<<<<<<<<>>>>>time start>>>>>>><<<<<<<<< */
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const period = currentHour >= 12 ? "PM" : "AM";
+        const formattedHour = currentHour % 12 === 0 ? 12 : currentHour % 12;
+        const formattedMinute =
+          currentMinute < 10 ? "0" + currentMinute : currentMinute;
+        const time = `${formattedHour}:${formattedMinute} ${period}`;
+        console.log(time);
+
+        let timeOfDay;
+        if (currentHour >= 6 && currentHour < 18) {
+          timeOfDay = "daytime";
+          console.log(`Day time`);
+
+          let id = data.weather[0].id;
+
+          if (id === 800) {
+            imageIcons.src = `images/Weather Icons/clear.svg`;
+          } else if (id >= 801 && id <= 804) {
+            imageIcons.src = `images/Weather Icons/cloud.svg`;
+          } else if (id >= 500 && id <= 531) {
+            imageIcons.src = `images/Weather Icons/rain.svg`;
+          } else if (id >= 300 && id <= 321) {
+            imageIcons.src = `images/Weather Icons/drizzle.png`;
+          } else if (id >= 200 && id <= 232) {
+            imageIcons.src = `images/Weather Icons/storm.svg`;
+          } else if (id >= 600 && id <= 622) {
+            imageIcons.src = `images/Weather Icons/snow.svg`;
+          } else if (id >= 701 && id <= 781) {
+            imageIcons.src = `images/Weather Icons/haze.svg`;
+          }
+        } else {
+          timeOfDay = "nighttime";
+          console.log(`night time`);
+          let id = data.weather[0].id;
+
+          if (id === 800) {
+            imageIcons.src = `https://openweathermap.org/img/wn/01n.png`;
+          } else if (id >= 801 && id <= 804) {
+            imageIcons.src = `https://openweathermap.org/img/wn/02n.png`;
+          } else if (id >= 500 && id <= 531) {
+            imageIcons.src = `https://openweathermap.org/img/wn/010n.png`;
+          } else if (id >= 300 && id <= 321) {
+            imageIcons.src = `https://openweathermap.org/img/wn/09n.png`;
+          } else if (id >= 200 && id <= 232) {
+            imageIcons.src = `https://openweathermap.org/img/wn/11n.png`;
+          } else if (id >= 600 && id <= 622) {
+            imageIcons.src = `https://openweathermap.org/img/wn/13n.png`;
+          } else if (id >= 701 && id <= 781) {
+            imageIcons.src = `https://openweathermap.org/img/wn/50d.png`;
+          }
+        }
+        /* <<<<<<<<<<<<>>>>>time end>>>>>>><<<<<<<<< */
+
+        /*   let id = data.weather[0].id;
 
         if (id === 800) {
           imageIcons.src = `images/Weather Icons/clear.svg`;
@@ -179,7 +244,7 @@ function createCityInputAndDatalist() {
           imageIcons.src = `images/Weather Icons/snow.svg`;
         } else if (id >= 701 && id <= 781) {
           imageIcons.src = `images/Weather Icons/haze.svg`;
-        }
+        } */
         const collectEl = document.createElement("div");
         collectEl.setAttribute("class", "collectEl innerContainer");
         innerDiv2.appendChild(collectEl);
@@ -191,7 +256,7 @@ function createCityInputAndDatalist() {
 
         const element4 = document.createElement("div");
         element4.setAttribute("class", "element4 innerContainer");
-        element4.innerHTML = `temp: ${data.main.temp}°C`;
+        element4.innerHTML = `temp: ${Math.floor(data.main.temp)}°C`;
         element1.appendChild(element4);
 
         const element5 = document.createElement("div");
@@ -201,7 +266,7 @@ function createCityInputAndDatalist() {
 
         const element6 = document.createElement("div");
         element6.setAttribute("class", "element6 innerContainer");
-        element6.innerHTML = `wind speed: ${data.wind.speed} km/h`;
+        element6.innerHTML = `wind speed: ${data.wind.speed} km/h.`;
         element5.appendChild(element6);
 
         /*  const element7 = document.createElement("div");

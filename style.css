@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: black;
 }
 
 :root {
@@ -27,7 +28,7 @@ body {
 .container-fluid {
     width: 100%;
     min-height: 100vh;
-    background: blue;
+    /* background: blue; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    background: purple;
+    /* background: purple; */
     padding: 1rem;
     height: auto;
     background: linear-gradient(to bottom right, #ff2ab7, #7522a1);
@@ -50,10 +51,10 @@ body {
     overflow: hidden;
 }
 
-.searchBtn {
+/* .searchBtn {
     background: #28a745;
 
-}
+} */
 
 .searchBtn {
     display: flex;
@@ -101,11 +102,12 @@ button:focus {
 #city-input {
     order: -1;
     width: 100%;
-    max-width: 200px;
+    /* max-width: 200px; */
     border: none;
     padding: 1rem;
     border-radius: 1rem;
     background: #e8e8e8;
+    flex: 1;
     /* box-shadow: 20px 20px 60px #c5c5c5,
         -20px -20px 60px #ffffff; */
     transition: 0.3s;
@@ -134,7 +136,7 @@ button:focus {
 
 }
 
-.collectEl, .innerDiv1, .inputContainer, .innerDiv2, .wrapperContainer {
+.innerDiv1, .inputContainer, .innerDiv2, .wrapperContainer {
     background: rgb(223, 225, 235);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
@@ -145,36 +147,44 @@ button:focus {
     /* margin-top: 10px; */
     /* width: 100%; */
     height: auto;
-    background: red;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* order: 4; */
+    flex: 1;
 }
 
-.element2 {
-    background: purple;
+.element2, .element5 {
+    /* background: purple; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
+/* 
 .element5 {
     background: #f794a2;
-}
+} */
 
 .collectEl {
-    padding: 8px;
+    /* padding: 8px; */
     /* background: yellow; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 8px;
+    gap: 14px;
 }
 
 #countryLebal, #cityLebal {
-    color: green;
-    background: blue;
+    /* color: green;
+    background: blue; */
     font-size: 20px;
     font-weight: bold;
 }
 
-#countryName {
-    background: gray;
-}
 
 #countryLebal, #countryName {
     text-align: center;
@@ -193,8 +203,9 @@ button:focus {
 }
 
 .country {
-    padding: 10px;
+    /* padding: 10px; */
     background: #7522a1;
+    text-align: center;
 }
 
 .country, .cityName1, .element5, .element2, .element1 {
@@ -205,9 +216,9 @@ button:focus {
 }
 
 #cityContainer {
-    /* text-align: center;*/
+    text-align: center;
     /* padding: 10px; */
-    background: rgb(0, 174, 255);
+    /* background: rgb(0, 174, 255); */
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -217,8 +228,11 @@ button:focus {
 
 /* <<<<<<<<<<<<>>>>>>>>>>>>>> */
 .emptyInputError {
-    background: brown;
+    background: rgb(223, 225, 235);
     text-align: center;
+    font-weight: 900;
+
+    border-radius: 10px;
 }
 
 .innerDiv1 {
@@ -239,6 +253,7 @@ button:focus {
     width: 100%;
     padding: 10px;
     display: flex;
+    justify-content: space-between;
     gap: 8px;
 }
 
@@ -246,4 +261,16 @@ button:focus {
     width: 100%;
     max-width: 50px;
     height: auto;
+}
+
+#cityError {
+    text-decoration: line-through;
+    font-weight: bold;
+    color: rgb(68, 0, 255);
+
+}
+
+.error-message, .emptyInput {
+    color: red;
+    padding: 5px;
 }
