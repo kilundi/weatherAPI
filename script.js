@@ -3,6 +3,18 @@ const mainContainer = document.createElement("div");
 mainContainer.setAttribute("class", "container-fluid mt-4");
 document.body.appendChild(mainContainer);
 
+// Create title container
+const titleContainer = document.createElement("h1");
+titleContainer.setAttribute("class", "titleContainer innerContainer");
+titleContainer.innerHTML = "WEATHER APP";
+mainContainer.appendChild(titleContainer);
+
+// Create title container
+const searchBy = document.createElement("h3");
+searchBy.setAttribute("class", "searchBy innerContainer");
+searchBy.innerText = "Search by city name:";
+mainContainer.appendChild(searchBy);
+
 // Create wrapper container
 const wrapperContainer = document.createElement("div");
 wrapperContainer.setAttribute("class", "wrapperContainer innerContainer");
@@ -52,11 +64,18 @@ function createCityInputAndDatalist() {
   wrapperContainer.appendChild(innerDiv1);
 
   const emptyInputError = document.createElement("div");
-  emptyInputError.setAttribute("class", "emptyInputError innerContainer");
+
   wrapperContainer.appendChild(emptyInputError);
 
   const innerDiv2 = document.createElement("div");
   wrapperContainer.appendChild(innerDiv2);
+
+  // // get user Device Location
+  // const deviceLocation = document.createElement("button");
+  // deviceLocation.innerHTML = "Device Location";
+  // deviceLocation.setAttribute("class", "deviceLocation");
+  // wrapperContainer.appendChild(deviceLocation);
+  // deviceLocation.addEventListener("click", () => {});
 
   const searchBtn = document.createElement("button");
   searchBtn.setAttribute("class", "btn btn-primary searchBtn innerContainer");

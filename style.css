@@ -37,9 +37,16 @@ body {
     width: 100%;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     color: white;
+    /* padding-top: 150px; */
+}
+
+.searchBy, .titleContainer {
+    padding: 8px;
 }
 
 .container-fluid::after {
@@ -60,6 +67,8 @@ body {
 .wrapperContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     padding: 1rem;
     height: auto;
@@ -96,6 +105,20 @@ body {
     text-shadow: 0 1px #fff;
 }
 
+.deviceLocation {
+    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+    border-radius: 20px;
+    border: 1px solid #8F9092;
+    transition: all 0.2s ease;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 20px;
+    width: fit-content;
+    padding: 8px 20px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+}
+
 #city-input {
     order: -1;
     width: 100%;
@@ -124,7 +147,7 @@ body {
     gap: 1rem;
 }
 
-.innerDiv1, .inputContainer, .innerDiv2, .wrapperContainer {
+.innerDiv1, .inputContainer, .innerDiv2, .wrapperContainer, .searchBy, .titleContainer {
     background: rgb(223, 225, 235);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
@@ -190,6 +213,7 @@ body {
     text-align: center;
     font-weight: 900;
     border-radius: 10px;
+    padding: 6px;
 }
 
 .innerDiv1 {
@@ -199,6 +223,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
 .innerDiv2 {
@@ -237,9 +262,7 @@ body {
 
     }
 
-    .wrapperContainer {
-        width: 100%;
-    }
+
 }
 
 /* mobile phones */
@@ -247,5 +270,9 @@ body {
     .inputContainer {
         flex-direction: column;
         gap: 5px;
+    }
+
+    .wrapperContainer {
+        width: 100%;
     }
 }
